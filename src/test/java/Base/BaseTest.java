@@ -1,0 +1,46 @@
+package Base;
+
+import Pages.*;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+
+import java.io.IOException;
+import java.time.Duration;
+
+public class BaseTest {
+
+    public static WebDriver driver;
+    public ExcelReader excelReader;
+    public WebDriverWait wait;
+    public HomePage homePage;
+    public LoginPage loginPage;
+    public Menu menu;
+    public Footer footer;
+    public CartPage cartPage;
+    public InventoryItemPage inventoryItemPage;
+
+    @BeforeClass
+    public void setUp() throws IOException {
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        excelReader = new ExcelReader("InventoryData.xlsx");
+        driver.manage().window().maximize();
+        homePage = new HomePage();
+        loginPage = new LoginPage();
+        menu = new Menu();
+        footer = new Footer();
+        cartPage = new CartPage();
+        inventoryItemPage = new InventoryItemPage();
+    }
+
+    @AfterClass
+    public void close() {
+        driver.close();
+    }
+}
+
