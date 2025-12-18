@@ -28,6 +28,23 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    public void removeButtonAppearsOnHomepage() {
+        for (WebElement button : homePage.inventoryItemButtons){
+            button.click();
+        }
+        for (WebElement button : homePage.inventoryItemButtons){
+            Assert.assertEquals(button.getText(), "Remove");
+        }
+    }
+
+    @Test
+    public void removeButtonAppearsOnInventoryItemPage() {
+        homePage.inventoryItemLinks.getFirst().click();
+        inventoryItemPage.clickOnInventoryItemButton();
+        Assert.assertEquals(inventoryItemPage.inventoryItemButton.getText(), "Remove");
+    }
+
+    @Test
     public void addOneItemToCartFromHomepage() {
         homePage.inventoryItemButtons.getFirst().click();
         List<String> itemNames = homePage.getItemNames();
@@ -77,6 +94,33 @@ public class CartTest extends BaseTest {
         List<String> cartItemNames = cartPage.getCartItemNamesList();
 
         Assert.assertEquals(cartItemNames, itemNames);
+    }
+
+    @Test
+    public void removeItemFromCartFromHomepage() {
+        homePage.inventoryItemButtons.getFirst().click();
+        List<String> itemNames = homePage.getItemNames();
+        homePage.clickOnShoppingCartLink();
+        ArrayList cartItemNames = cartPage.getCartItemNamesList();
+        Assert.assertEquals(itemNames.getFirst(), cartItemNames.getFirst());
+        driver.navigate().back();
+        homePage.inventoryItemButtons.getFirst().click();
+        homePage.clickOnShoppingCartLink();
+        Assert.assertTrue(cartPage.cartItemNamesData.isEmpty());
+    }
+
+    @Test
+    public void removeItemFromCartFromInventoryItemPage() {
+        List<String> itemNames = homePage.getItemNames();
+        homePage.inventoryItemLinks.getFirst().click();
+        inventoryItemPage.clickOnInventoryItemButton();
+        homePage.clickOnShoppingCartLink();
+        ArrayList cartItemNames = cartPage.getCartItemNamesList();
+        Assert.assertEquals(itemNames.getFirst(), cartItemNames.getFirst());
+        driver.navigate().back();
+        inventoryItemPage.clickOnInventoryItemButton();
+        homePage.clickOnShoppingCartLink();
+        Assert.assertTrue(cartPage.cartItemNamesData.isEmpty());
     }
 
     @AfterMethod

@@ -22,6 +22,9 @@ public class BaseTest {
     public Footer footer;
     public CartPage cartPage;
     public InventoryItemPage inventoryItemPage;
+    public CheckoutStepOnePage checkoutStepOnePage;
+    public CheckoutStepTwoPage checkoutStepTwoPage;
+    public CheckoutCompletePage checkoutCompletePage;
 
     @BeforeClass
     public void setUp() throws IOException {
@@ -36,6 +39,9 @@ public class BaseTest {
         footer = new Footer();
         cartPage = new CartPage();
         inventoryItemPage = new InventoryItemPage();
+        checkoutStepOnePage = new CheckoutStepOnePage();
+        checkoutStepTwoPage = new CheckoutStepTwoPage();
+        checkoutCompletePage = new CheckoutCompletePage();
     }
 
     @AfterClass
