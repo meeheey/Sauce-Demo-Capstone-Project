@@ -7,6 +7,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class CheckoutTest extends BaseTest {
 
     @BeforeMethod
@@ -85,4 +87,79 @@ public class CheckoutTest extends BaseTest {
         checkoutStepOnePage.clickOnContinueButton();
         Assert.assertEquals(checkoutStepOneWithErrorMessagePage.getErrorMessage().getText(), "Error: First Name is required");
     }
+
+    @Test
+    public void validCheckoutSubtotal(){
+        List<String[]> itemPrices = homePage.getItemPrices();
+        float sumPrices = 0;
+        for (String[] itemPrice : itemPrices) {
+            sumPrices += Float.parseFloat(itemPrice[1].replaceAll("[^\\d.-]", ""));
+        }
+        System.out.println(sumPrices);
+        for (WebElement button : homePage.getInventoryItemButtons()){
+            button.click();
+        }
+        homePage.clickOnShoppingCartLink();
+        cartPage.clickOnCheckoutButton();
+        checkoutStepOnePage.inputFirstName("Petar");
+        checkoutStepOnePage.inputLastName("Petrović");
+        checkoutStepOnePage.inputPostalCode("21000");
+        checkoutStepOnePage.clickOnContinueButton();
+        Assert.assertEquals(checkoutStepTwoPage.getSubtotal(), sumPrices);
+    }
+
+    @Test
+    public void validCheckoutItemNames() {
+        List<String> homepageItemNames = homePage.getItemNames();
+        for (WebElement button : homePage.getInventoryItemButtons()){
+            button.click();
+        }
+        homePage.clickOnShoppingCartLink();
+        cartPage.clickOnCheckoutButton();
+        checkoutStepOnePage.inputFirstName("Petar");
+        checkoutStepOnePage.inputLastName("Petrović");
+        checkoutStepOnePage.inputPostalCode("21000");
+        checkoutStepOnePage.clickOnContinueButton();
+        List<String> checkoutItemNames = checkoutStepTwoPage.getItemNames();
+        for (int i = 0; i < checkoutItemNames.size(); i++) {
+            Assert.assertEquals(checkoutItemNames.get(i), homepageItemNames.get(i));
+        }
+    }
+
+    @Test
+    public void validCheckoutItemDescriptions() {
+        List<String[]> homepageItemDescriptions = homePage.getItemDescriptions();
+        for (WebElement button : homePage.getInventoryItemButtons()){
+            button.click();
+        }
+        homePage.clickOnShoppingCartLink();
+        cartPage.clickOnCheckoutButton();
+        checkoutStepOnePage.inputFirstName("Petar");
+        checkoutStepOnePage.inputLastName("Petrović");
+        checkoutStepOnePage.inputPostalCode("21000");
+        checkoutStepOnePage.clickOnContinueButton();
+        List<String[]> checkoutItemDescriptions = checkoutStepTwoPage.getItemDescriptions();
+        for (int i = 0; i < checkoutItemDescriptions.size(); i++) {
+            Assert.assertEquals(checkoutItemDescriptions.get(i)[1], homepageItemDescriptions.get(i)[1]);
+        }
+    }
+
+    @Test
+    public void validCheckoutItemPrices() {
+        List<String[]> homepageItemPrices = homePage.getItemPrices();
+        for (WebElement button : homePage.getInventoryItemButtons()){
+            button.click();
+        }
+        homePage.clickOnShoppingCartLink();
+        cartPage.clickOnCheckoutButton();
+        checkoutStepOnePage.inputFirstName("Petar");
+        checkoutStepOnePage.inputLastName("Petrović");
+        checkoutStepOnePage.inputPostalCode("21000");
+        checkoutStepOnePage.clickOnContinueButton();
+        List<String[]> checkoutItemPrices = checkoutStepTwoPage.getItemPrices();
+        for (int i = 0; i < checkoutItemPrices.size(); i++) {
+            Assert.assertEquals(checkoutItemPrices.get(i)[1], homepageItemPrices.get(i)[1]);
+        }
+    }
+
 }
