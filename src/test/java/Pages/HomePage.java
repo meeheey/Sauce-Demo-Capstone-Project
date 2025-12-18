@@ -19,16 +19,38 @@ public class HomePage extends BaseTest {
     WebElement menuButton;
 
     @FindBy(className = "inventory_item")
-    public List<WebElement> inventoryItems;
+    List<WebElement> inventoryItems;
 
     @FindBy(className = "inventory_item_name")
-    public List<WebElement> inventoryItemLinks;
+    List<WebElement> inventoryItemLinks;
 
     @FindBy(className = "btn_inventory")
-    public List<WebElement> inventoryItemButtons;
+    List<WebElement> inventoryItemButtons;
 
     @FindBy (className = "shopping_cart_link")
-    public WebElement shoppingCartLink;
+    WebElement shoppingCartLink;
+
+    //-----------------------------------------
+
+    public WebElement getMenuButton() {
+        return menuButton;
+    }
+
+    public List<WebElement> getInventoryItems() {
+        return inventoryItems;
+    }
+
+    public List<WebElement> getInventoryItemLinks() {
+        return inventoryItemLinks;
+    }
+
+    public List<WebElement> getInventoryItemButtons() {
+        return inventoryItemButtons;
+    }
+
+    public WebElement getShoppingCartLink() {
+        return shoppingCartLink;
+    }
 
 
     //-----------------------------------------

@@ -20,7 +20,7 @@ public class CartTest extends BaseTest {
         loginPage.inputPassword("secret_sauce");
         loginPage.clickOnSubmitButton();
         wait.until(ExpectedConditions.urlContains("inventory"));
-        for (WebElement button : homePage.inventoryItemButtons){
+        for (WebElement button : homePage.getInventoryItemButtons()){
             if(button.getText().equals("Remove")) {
                 button.click();
             }
@@ -29,24 +29,24 @@ public class CartTest extends BaseTest {
 
     @Test
     public void removeButtonAppearsOnHomepage() {
-        for (WebElement button : homePage.inventoryItemButtons){
+        for (WebElement button : homePage.getInventoryItemButtons()){
             button.click();
         }
-        for (WebElement button : homePage.inventoryItemButtons){
+        for (WebElement button : homePage.getInventoryItemButtons()){
             Assert.assertEquals(button.getText(), "Remove");
         }
     }
 
     @Test
     public void removeButtonAppearsOnInventoryItemPage() {
-        homePage.inventoryItemLinks.getFirst().click();
+        homePage.getInventoryItemLinks().getFirst().click();
         inventoryItemPage.clickOnInventoryItemButton();
-        Assert.assertEquals(inventoryItemPage.inventoryItemButton.getText(), "Remove");
+        Assert.assertEquals(inventoryItemPage.getInventoryItemButton().getText(), "Remove");
     }
 
     @Test
     public void addOneItemToCartFromHomepage() {
-        homePage.inventoryItemButtons.getFirst().click();
+        homePage.getInventoryItemButtons().getFirst().click();
         List<String> itemNames = homePage.getItemNames();
         homePage.clickOnShoppingCartLink();
         ArrayList cartItemNames = cartPage.getCartItemNamesList();
@@ -56,7 +56,7 @@ public class CartTest extends BaseTest {
     @Test
     public void addAllItemsToCartFromHomepage() {
         List<String> itemNames = homePage.getItemNames();
-        for (WebElement button : homePage.inventoryItemButtons){
+        for (WebElement button : homePage.getInventoryItemButtons()){
             button.click();
         }
         homePage.clickOnShoppingCartLink();
@@ -69,7 +69,7 @@ public class CartTest extends BaseTest {
     @Test
     public void addOneItemToCartFromInventoryItemPage() {
         List<String> itemNames = homePage.getItemNames();
-        homePage.inventoryItemLinks.getFirst().click();
+        homePage.getInventoryItemLinks().getFirst().click();
         inventoryItemPage.clickOnInventoryItemButton();
         homePage.clickOnShoppingCartLink();
         ArrayList cartItemNames = cartPage.getCartItemNamesList();
@@ -98,21 +98,21 @@ public class CartTest extends BaseTest {
 
     @Test
     public void removeItemFromCartFromHomepage() {
-        homePage.inventoryItemButtons.getFirst().click();
+        homePage.getInventoryItemButtons().getFirst().click();
         List<String> itemNames = homePage.getItemNames();
         homePage.clickOnShoppingCartLink();
         ArrayList cartItemNames = cartPage.getCartItemNamesList();
         Assert.assertEquals(itemNames.getFirst(), cartItemNames.getFirst());
         driver.navigate().back();
-        homePage.inventoryItemButtons.getFirst().click();
+        homePage.getInventoryItemButtons().getFirst().click();
         homePage.clickOnShoppingCartLink();
-        Assert.assertTrue(cartPage.cartItemNamesData.isEmpty());
+        Assert.assertTrue(cartPage.getCartItemNamesData().isEmpty());
     }
 
     @Test
     public void removeItemFromCartFromInventoryItemPage() {
         List<String> itemNames = homePage.getItemNames();
-        homePage.inventoryItemLinks.getFirst().click();
+        homePage.getInventoryItemLinks().getFirst().click();
         inventoryItemPage.clickOnInventoryItemButton();
         homePage.clickOnShoppingCartLink();
         ArrayList cartItemNames = cartPage.getCartItemNamesList();
@@ -120,7 +120,16 @@ public class CartTest extends BaseTest {
         driver.navigate().back();
         inventoryItemPage.clickOnInventoryItemButton();
         homePage.clickOnShoppingCartLink();
-        Assert.assertTrue(cartPage.cartItemNamesData.isEmpty());
+        Assert.assertTrue(cartPage.getCartItemNamesData().isEmpty());
+    }
+
+    @Test
+    public void removeItemFromCartInCart() {
+        homePage.getInventoryItemButtons().getFirst().click();
+        homePage.clickOnShoppingCartLink();
+        cartWithItemsPage.getCartItemButtons().getFirst().click();
+        driver.navigate().refresh();
+        Assert.assertTrue(cartPage.getCartItemNamesData().isEmpty());
     }
 
     @AfterMethod

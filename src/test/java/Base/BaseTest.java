@@ -21,6 +21,7 @@ public class BaseTest {
     public Menu menu;
     public Footer footer;
     public CartPage cartPage;
+    public CartWithItemsPage cartWithItemsPage;
     public InventoryItemPage inventoryItemPage;
     public CheckoutStepOnePage checkoutStepOnePage;
     public CheckoutStepTwoPage checkoutStepTwoPage;
@@ -38,6 +39,7 @@ public class BaseTest {
         menu = new Menu();
         footer = new Footer();
         cartPage = new CartPage();
+        cartWithItemsPage = new CartWithItemsPage();
         inventoryItemPage = new InventoryItemPage();
         checkoutStepOnePage = new CheckoutStepOnePage();
         checkoutStepTwoPage = new CheckoutStepTwoPage();

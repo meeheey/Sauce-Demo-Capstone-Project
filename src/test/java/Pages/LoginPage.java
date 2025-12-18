@@ -14,13 +14,28 @@ public class LoginPage extends BaseTest {
     }
 
     @FindBy(id="user-name")
-    public WebElement usernameField;
+    WebElement usernameField;
 
     @FindBy(id="password")
     WebElement passwordField;
 
     @FindBy(id="login-button")
-    public WebElement loginButton;
+    WebElement loginButton;
+
+    //------------------------------
+
+    public WebElement getUsernameField() {
+        return usernameField;
+    }
+
+    public WebElement getPasswordField() {
+        return passwordField;
+    }
+
+    public WebElement getLoginButton() {
+        return loginButton;
+    }
+
 
     //----------------------------------------------
 

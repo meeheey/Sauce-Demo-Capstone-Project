@@ -11,7 +11,14 @@ public class InventoryItemPage extends BaseTest {
     }
 
     @FindBy (className = "btn_inventory")
-    public WebElement inventoryItemButton;
+    WebElement inventoryItemButton;
+
+    //------------------------------
+
+    public WebElement getInventoryItemButton() {
+        return inventoryItemButton;
+    }
+
 
     //------------------------------
 

@@ -11,11 +11,26 @@ public class CheckoutCompletePage extends BaseTest {
     }
 
     @FindBy(className = "complete-header")
-    public WebElement completeHeader;
+    WebElement completeHeader;
 
     @FindBy(className = "complete-text")
-    public WebElement completeText;
+    WebElement completeText;
 
     @FindBy(id = "back-to-products")
-    public WebElement backHomeButton;
+    WebElement backHomeButton;
+
+    //------------------------------
+
+
+    public WebElement getCompleteHeader() {
+        return completeHeader;
+    }
+
+    public WebElement getCompleteText() {
+        return completeText;
+    }
+
+    public WebElement getBackHomeButton() {
+        return backHomeButton;
+    }
 }

@@ -17,10 +17,29 @@ public class Menu extends BaseTest {
     WebElement aboutLink;
 
     @FindBy(id = "logout_sidebar_link")
-    public WebElement logoutLink;
+    WebElement logoutLink;
 
     @FindBy(id = "reset_sidebar_link")
     WebElement resetAppStateLink;
+
+    //------------------------------
+
+    public WebElement getAllItemsLink() {
+        return allItemsLink;
+    }
+
+    public WebElement getAboutLink() {
+        return aboutLink;
+    }
+
+    public WebElement getLogoutLink() {
+        return logoutLink;
+    }
+
+    public WebElement getResetAppStateLink() {
+        return resetAppStateLink;
+    }
+
 
     //---------------------------------
 

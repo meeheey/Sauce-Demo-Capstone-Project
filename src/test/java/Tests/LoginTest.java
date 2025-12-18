@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest {
         loginPage.inputPassword("secret_sauce");
         loginPage.clickOnSubmitButton();
         homePage.clickOnMenuButton();
-        Assert.assertTrue(menu.logoutLink.isDisplayed());
+        Assert.assertTrue(menu.getLogoutLink().isDisplayed());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class LoginTest extends BaseTest {
         loginPage.inputUsername("locked_out_user");
         loginPage.inputPassword("secret_sauce");
         loginPage.clickOnSubmitButton();
-        Assert.assertTrue(loginPage.loginButton.isDisplayed());
+        Assert.assertTrue(loginPage.getLoginButton().isDisplayed());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class LoginTest extends BaseTest {
         loginPage.inputUsername("standard_user");
         loginPage.inputPassword("Password123");
         loginPage.clickOnSubmitButton();
-        Assert.assertTrue(loginPage.loginButton.isDisplayed());
+        Assert.assertTrue(loginPage.getLoginButton().isDisplayed());
     }
 
     @Test
@@ -44,16 +44,16 @@ public class LoginTest extends BaseTest {
         loginPage.inputUsername("");
         loginPage.inputPassword("");
         loginPage.clickOnSubmitButton();
-        Assert.assertTrue(loginPage.loginButton.isDisplayed());
+        Assert.assertTrue(loginPage.getLoginButton().isDisplayed());
     }
 
     @AfterMethod
     public void tearDown() {
         try {
             homePage.clickOnMenuButton();
-            if (menu.logoutLink.isDisplayed()) {
+            if (menu.getLogoutLink().isDisplayed()) {
                 menu.clickOnLogoutLink();
-                wait.until(ExpectedConditions.visibilityOf(loginPage.usernameField));
+                wait.until(ExpectedConditions.visibilityOf(loginPage.getUsernameField()));
             }
         } catch (Exception e) {
         }

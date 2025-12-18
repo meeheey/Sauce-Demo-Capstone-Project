@@ -1,0 +1,19 @@
+package Pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
+
+public class CartWithItemsPage extends CartPage {
+
+    @FindBy(className = "cart_button")
+    List<WebElement> cartItemButtons;
+
+    //---------------------------------
+
+    public List<WebElement> getCartItemButtons() {
+        return cartItemButtons;
+    }
+}

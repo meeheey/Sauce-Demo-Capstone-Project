@@ -15,13 +15,27 @@ public class CartPage extends BaseTest {
     }
 
     @FindBy(css = "[data-test='inventory-item-name']")
-    public List<WebElement> cartItemNamesData;
+    List<WebElement> cartItemNamesData;
 
     @FindBy (id = "checkout")
-    public WebElement checkoutButton;
+    WebElement checkoutButton;
 
     @FindBy (id = "continue-shopping")
-    public WebElement continueShoppingButton;
+    WebElement continueShoppingButton;
+
+    //----------------------
+
+    public List<WebElement> getCartItemNamesData() {
+        return cartItemNamesData;
+    }
+
+    public WebElement getCheckoutButton() {
+        return checkoutButton;
+    }
+
+    public WebElement getContinueShoppingButton() {
+        return continueShoppingButton;
+    }
 
     //----------------------
 
