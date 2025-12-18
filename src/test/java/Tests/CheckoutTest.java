@@ -1,7 +1,6 @@
 package Tests;
 
 import Base.BaseTest;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -53,7 +52,7 @@ public class CheckoutTest extends BaseTest {
         checkoutStepOnePage.inputLastName("Petrović");
         checkoutStepOnePage.inputPostalCode("21000");
         checkoutStepOnePage.clickOnContinueButton();
-        Assert.assertEquals(driver.findElement(By.cssSelector("h3[data-test='error']")).getText(), "Error: First Name is required");
+        Assert.assertEquals(checkoutStepOneWithErrorMessagePage.getErrorMessage().getText(), "Error: First Name is required");
     }
 
     @Test
@@ -64,7 +63,7 @@ public class CheckoutTest extends BaseTest {
         checkoutStepOnePage.inputFirstName("Petar");
         checkoutStepOnePage.inputPostalCode("21000");
         checkoutStepOnePage.clickOnContinueButton();
-        Assert.assertEquals(driver.findElement(By.cssSelector("h3[data-test='error']")).getText(), "Error: Last Name is required");
+        Assert.assertEquals(checkoutStepOneWithErrorMessagePage.getErrorMessage().getText(), "Error: Last Name is required");
     }
 
     @Test
@@ -75,7 +74,7 @@ public class CheckoutTest extends BaseTest {
         checkoutStepOnePage.inputFirstName("Petar");
         checkoutStepOnePage.inputLastName("Petrović");
         checkoutStepOnePage.clickOnContinueButton();
-        Assert.assertEquals(driver.findElement(By.cssSelector("h3[data-test='error']")).getText(), "Error: Postal Code is required");
+        Assert.assertEquals(checkoutStepOneWithErrorMessagePage.getErrorMessage().getText(), "Error: Postal Code is required");
     }
 
     @Test
@@ -84,6 +83,6 @@ public class CheckoutTest extends BaseTest {
         homePage.clickOnShoppingCartLink();
         cartPage.clickOnCheckoutButton();
         checkoutStepOnePage.clickOnContinueButton();
-        Assert.assertEquals(driver.findElement(By.cssSelector("h3[data-test='error']")).getText(), "Error: First Name is required");
+        Assert.assertEquals(checkoutStepOneWithErrorMessagePage.getErrorMessage().getText(), "Error: First Name is required");
     }
 }

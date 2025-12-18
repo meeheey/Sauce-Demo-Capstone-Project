@@ -24,6 +24,7 @@ public class BaseTest {
     public CartWithItemsPage cartWithItemsPage;
     public InventoryItemPage inventoryItemPage;
     public CheckoutStepOnePage checkoutStepOnePage;
+    public CheckoutStepOneWithErrorMessagePage checkoutStepOneWithErrorMessagePage;
     public CheckoutStepTwoPage checkoutStepTwoPage;
     public CheckoutCompletePage checkoutCompletePage;
 
@@ -42,6 +43,7 @@ public class BaseTest {
         cartWithItemsPage = new CartWithItemsPage();
         inventoryItemPage = new InventoryItemPage();
         checkoutStepOnePage = new CheckoutStepOnePage();
+        checkoutStepOneWithErrorMessagePage = new CheckoutStepOneWithErrorMessagePage();
         checkoutStepTwoPage = new CheckoutStepTwoPage();
         checkoutCompletePage = new CheckoutCompletePage();
     }
