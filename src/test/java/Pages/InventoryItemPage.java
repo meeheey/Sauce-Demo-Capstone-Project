@@ -19,7 +19,6 @@ public class InventoryItemPage extends BaseTest {
         return inventoryItemButton;
     }
 
-
     //------------------------------
 
     public void clickOnInventoryItemButton() {

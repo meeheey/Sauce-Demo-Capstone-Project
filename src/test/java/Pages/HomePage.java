@@ -5,6 +5,7 @@ import Base.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,9 @@ public class HomePage extends BaseTest {
     @FindBy (className = "shopping_cart_link")
     WebElement shoppingCartLink;
 
+    @FindBy (className = "product_sort_container")
+    WebElement filterDropdownMenu;
+
     //-----------------------------------------
 
     public WebElement getMenuButton() {
@@ -51,7 +55,6 @@ public class HomePage extends BaseTest {
     public WebElement getShoppingCartLink() {
         return shoppingCartLink;
     }
-
 
     //-----------------------------------------
 
@@ -84,6 +87,11 @@ public class HomePage extends BaseTest {
             itemDescriptions.add(new String[]{lines[0], lines[2]});
         }
         return itemDescriptions;
+    }
+
+    public void chooseFilter(String filter) {
+        Select selectFilter = new Select(filterDropdownMenu);
+        selectFilter.selectByVisibleText(filter);
     }
 
     public void clickOnShoppingCartLink() {

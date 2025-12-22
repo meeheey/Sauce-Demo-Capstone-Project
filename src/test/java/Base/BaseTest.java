@@ -17,6 +17,7 @@ public class BaseTest {
     public ExcelReader excelReader;
     public WebDriverWait wait;
     public HomePage homePage;
+    public HomePageWithFilter homePageWithFilter;
     public LoginPage loginPage;
     public Menu menu;
     public Footer footer;
@@ -36,6 +37,7 @@ public class BaseTest {
         excelReader = new ExcelReader("InventoryData.xlsx");
         driver.manage().window().maximize();
         homePage = new HomePage();
+        homePageWithFilter = new HomePageWithFilter();
         loginPage = new LoginPage();
         menu = new Menu();
         footer = new Footer();
