@@ -28,6 +28,16 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    public void cartCountTest() {
+        int countItems = 0;
+        for (WebElement button : homePage.getInventoryItemButtons()){
+            button.click();
+            countItems++;
+            Assert.assertEquals(countItems, cartWithItemsPage.getCountItems());
+        }
+    }
+
+    @Test
     public void removeButtonAppearsOnHomepage() {
         for (WebElement button : homePage.getInventoryItemButtons()){
             button.click();
