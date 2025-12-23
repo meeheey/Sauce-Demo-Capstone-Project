@@ -29,8 +29,4 @@ public class CheckoutCompletePage extends BaseTest {
     public WebElement getCompleteText() {
         return completeText;
     }
-
-    public WebElement getBackHomeButton() {
-        return backHomeButton;
-    }
 }

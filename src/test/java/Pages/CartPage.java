@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,14 +26,6 @@ public class CartPage extends BaseTest {
 
     public List<WebElement> getCartItemNamesData() {
         return cartItemNamesData;
-    }
-
-    public WebElement getCheckoutButton() {
-        return checkoutButton;
-    }
-
-    public WebElement getContinueShoppingButton() {
-        return continueShoppingButton;
     }
 
     //----------------------

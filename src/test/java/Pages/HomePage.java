@@ -36,24 +36,12 @@ public class HomePage extends BaseTest {
 
     //-----------------------------------------
 
-    public WebElement getMenuButton() {
-        return menuButton;
-    }
-
-    public List<WebElement> getInventoryItems() {
-        return inventoryItems;
-    }
-
     public List<WebElement> getInventoryItemLinks() {
         return inventoryItemLinks;
     }
 
     public List<WebElement> getInventoryItemButtons() {
         return inventoryItemButtons;
-    }
-
-    public WebElement getShoppingCartLink() {
-        return shoppingCartLink;
     }
 
     //-----------------------------------------

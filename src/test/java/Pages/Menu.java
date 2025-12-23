@@ -24,22 +24,9 @@ public class Menu extends BaseTest {
 
     //------------------------------
 
-    public WebElement getAllItemsLink() {
-        return allItemsLink;
-    }
-
-    public WebElement getAboutLink() {
-        return aboutLink;
-    }
-
     public WebElement getLogoutLink() {
         return logoutLink;
     }
-
-    public WebElement getResetAppStateLink() {
-        return resetAppStateLink;
-    }
-
 
     //---------------------------------
 
