@@ -40,7 +40,7 @@ public class CheckoutTest extends BaseTest {
     }
 
     @Test
-    public void checkoutWithEmptyCart() {
+    public void checkoutWithEmptyCart() { // Ovaj test pada. Pogledati Bug report u rootu projekta.
         homePage.clickOnShoppingCartLink();
         cartPage.clickOnCheckoutButton();
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/cart.html");

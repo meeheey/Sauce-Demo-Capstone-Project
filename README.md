@@ -6,7 +6,7 @@ This project is a capstone project required for finishing IT Bootcamp's Software
 * **Selenium** testing framework (**Page Object Model** using **Page Factory library**).
 The project is done following all principles of object oriented programming and POM testing.
 ### Manual foundation
-This automatization is based on 41 Test Cases which I deemed most important or interesting. Test Cases are accessible in the root of the project. 
+This automatization is based on 39 Test Cases which I deemed most important or interesting. Test Cases are accessible in the root of the project. 
 
 ## Structure
 Everything I did is located in **src/test/java**. As per Page Object Model infrastructure, it contains:
