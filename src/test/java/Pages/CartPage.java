@@ -14,15 +14,14 @@ public class CartPage extends BaseTest {
     }
 
     @FindBy(css = "[data-test='inventory-item-name']")
-    List<WebElement> cartItemNamesData;
+    List<WebElement> cartItemNamesData; // Get list of item names
 
     @FindBy (id = "checkout")
-    WebElement checkoutButton;
-
-    @FindBy (id = "continue-shopping")
-    WebElement continueShoppingButton;
+    WebElement checkoutButton; // Get "Checkout" button
 
     //----------------------
+
+    // Getters
 
     public List<WebElement> getCartItemNamesData() {
         return cartItemNamesData;
@@ -30,12 +29,14 @@ public class CartPage extends BaseTest {
 
     //----------------------
 
+    // Util functions
+
     public ArrayList<String> getCartItemNamesList(){
         ArrayList<String> cartItemNames = new ArrayList<>();
-        for (WebElement cartItemName : cartItemNamesData) {
-            cartItemNames.add(cartItemName.getText());
+        for (WebElement cartItemName : cartItemNamesData) { // Loops through all item names
+            cartItemNames.add(cartItemName.getText()); // Extracts text and adds it to the list
         }
-        return cartItemNames;
+        return cartItemNames; // Returns the list
     }
 
     public void clickOnCheckoutButton(){

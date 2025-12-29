@@ -12,15 +12,17 @@ public class LoginPage extends BaseTest {
     }
 
     @FindBy(id="user-name")
-    WebElement usernameField;
+    WebElement usernameField; // Get "Username" field
 
     @FindBy(id="password")
-    WebElement passwordField;
+    WebElement passwordField; // Get "Password" field
 
     @FindBy(id="login-button")
-    WebElement loginButton;
+    WebElement loginButton; // Get "Login" button
 
     //------------------------------
+
+    // Getters
 
     public WebElement getUsernameField() {
         return usernameField;
@@ -32,17 +34,19 @@ public class LoginPage extends BaseTest {
 
     //----------------------------------------------
 
-    public void inputUsername(String username) {
-        usernameField.clear();
-        usernameField.sendKeys(username);
+    // Util functions
+
+    public void inputUsername(String username) { // Function for inputting username
+        usernameField.clear(); // Clear
+        usernameField.sendKeys(username); // Input string
     }
 
-    public void inputPassword(String password) {
-        passwordField.clear();
-        passwordField.sendKeys(password);
+    public void inputPassword(String password) { // Function for inputting password
+        passwordField.clear(); // Clear
+        passwordField.sendKeys(password); // Input string
     }
 
-    public void clickOnSubmitButton() {
+    public void clickOnLoginButton() {
         loginButton.click();
     }
 }

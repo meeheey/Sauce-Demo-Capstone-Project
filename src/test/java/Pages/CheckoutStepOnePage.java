@@ -11,32 +11,34 @@ public class CheckoutStepOnePage extends BaseTest {
     }
 
     @FindBy(id = "first-name")
-    WebElement firstNameField;
+    WebElement firstNameField; // Get "First Name" field
 
     @FindBy(id = "last-name")
-    WebElement lastNameField;
+    WebElement lastNameField; // Get "Last Name" field
 
     @FindBy(id = "postal-code")
-    WebElement postalCodeField;
+    WebElement postalCodeField; // Get "Postal code/zip" field
 
     @FindBy(id = "continue")
-    WebElement continueButton;
+    WebElement continueButton; // Get "Continue" button
 
     //--------------------------------
 
-    public void inputFirstName(String firstName) {
-        firstNameField.clear();
-        firstNameField.sendKeys(firstName);
+    // Util functions
+
+    public void inputFirstName(String firstName) { // Function for inputting first name
+        firstNameField.clear(); // Clear
+        firstNameField.sendKeys(firstName); // Input string
     }
 
-    public void inputLastName(String lastName) {
-        lastNameField.clear();
-        lastNameField.sendKeys(lastName);
+    public void inputLastName(String lastName) { // Function for inputting last name
+        lastNameField.clear(); // Clear
+        lastNameField.sendKeys(lastName); // Input string
     }
 
-    public void inputPostalCode(String postalCode) {
-        postalCodeField.clear();
-        postalCodeField.sendKeys(postalCode);
+    public void inputPostalCode(String postalCode) { // Function for inputting last name
+        postalCodeField.clear(); // Clear
+        postalCodeField.sendKeys(postalCode); // Input string
     }
 
     public void clickOnContinueButton() {

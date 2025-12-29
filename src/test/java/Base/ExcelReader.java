@@ -1,7 +1,7 @@
 package Base;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -10,35 +10,30 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class ExcelReader {
-    File file;
-    FileInputStream fis;
-    XSSFWorkbook wb;
-    XSSFSheet sheet;
-    XSSFRow row;
-    XSSFCell cell;
+
+    private final XSSFWorkbook wb;
+    private final DataFormatter formatter = new DataFormatter();
 
     public ExcelReader(String filePath) throws IOException {
-        file = new File(filePath);
-        fis = new FileInputStream(file);
+        FileInputStream fis = new FileInputStream(new File(filePath));
         wb = new XSSFWorkbook(fis);
     }
 
     public String getStringData(String sheetName, int rowNumber, int cellNumber) {
-        sheet = wb.getSheet(sheetName);
-        row = sheet.getRow(rowNumber);
-        cell = row.getCell(cellNumber);
-        return cell.getStringCellValue();
+        XSSFSheet sheet = wb.getSheet(sheetName);
+        Cell cell = sheet.getRow(rowNumber).getCell(cellNumber);
+        return formatter.formatCellValue(cell);
     }
 
     public int getIntegerData(String sheetName, int rowNumber, int cellNumber) {
-        sheet = wb.getSheet(sheetName);
-        row = sheet.getRow(rowNumber);
-        cell = row.getCell(cellNumber);
-        return (int) cell.getNumericCellValue();
+        XSSFSheet sheet = wb.getSheet(sheetName);
+        Cell cell = sheet.getRow(rowNumber).getCell(cellNumber);
+        String value = formatter.formatCellValue(cell);
+
+        return Integer.parseInt(value);
     }
 
-    public int getLastRow(String sheet) {
-        this.sheet = wb.getSheet(sheet);
-        return this.sheet.getLastRowNum();
+    public int getLastRow(String sheetName) {
+        return wb.getSheet(sheetName).getLastRowNum();
     }
 }

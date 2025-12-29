@@ -11,16 +11,14 @@ public class CheckoutCompletePage extends BaseTest {
     }
 
     @FindBy(className = "complete-header")
-    WebElement completeHeader;
+    WebElement completeHeader; // Get "Complete" header
 
     @FindBy(className = "complete-text")
-    WebElement completeText;
-
-    @FindBy(id = "back-to-products")
-    WebElement backHomeButton;
+    WebElement completeText; // Get "Complete" text
 
     //------------------------------
 
+    // Getters
 
     public WebElement getCompleteHeader() {
         return completeHeader;

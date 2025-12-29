@@ -10,6 +10,8 @@ public class Footer extends BaseTest {
         PageFactory.initElements(driver, this);
     }
 
+    // Get footer links
+
     @FindBy(css="a[href='https://twitter.com/saucelabs']")
     WebElement xLink;
 
@@ -20,6 +22,9 @@ public class Footer extends BaseTest {
     WebElement linkedInLink;
 
     //---------------------------------
+
+    // Util functions
+    // Functions for clicking on footer links
 
     public void clickOnXLink() {
         xLink.click();

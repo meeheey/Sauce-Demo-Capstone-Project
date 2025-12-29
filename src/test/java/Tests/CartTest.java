@@ -15,11 +15,14 @@ import java.util.List;
 public class CartTest extends BaseTest {
     @BeforeMethod
     public void pageSetUp() {
+        // Go to Sauce Demo and log in
         driver.navigate().to("https://www.saucedemo.com/");
         loginPage.inputUsername("standard_user");
         loginPage.inputPassword("secret_sauce");
-        loginPage.clickOnSubmitButton();
+        loginPage.clickOnLoginButton();
+        // Wait until url is changed
         wait.until(ExpectedConditions.urlContains("inventory"));
+        // If there are any buttons in cart, remove them
         for (WebElement button : homePage.getInventoryItemButtons()){
             if(button.getText().equals("Remove")) {
                 button.click();
@@ -27,34 +30,34 @@ public class CartTest extends BaseTest {
         }
     }
 
-    @Test
+    @Test(priority = 20) // Test priorities correspond to test case IDs
     public void cartCountTest() {
-        int countItems = 0;
+        int countItems = 0; // Cart is empty
         for (WebElement button : homePage.getInventoryItemButtons()){
-            button.click();
+            button.click(); // Add item to cart
             countItems++;
-            Assert.assertEquals(countItems, cartWithItemsPage.getCountItems());
+            Assert.assertEquals(countItems, cartWithItemsPage.getCountItems()); // Check if count is correct
         }
     }
 
-    @Test
+    @Test(priority = 21) // Test priorities correspond to test case IDs
     public void removeButtonAppearsOnHomepage() {
-        for (WebElement button : homePage.getInventoryItemButtons()){
+        for (WebElement button : homePage.getInventoryItemButtons()){ // Loop through buttons and click on each one
             button.click();
         }
-        for (WebElement button : homePage.getInventoryItemButtons()){
+        for (WebElement button : homePage.getInventoryItemButtons()){ // Loop through buttons and check if each has text "Remove"
             Assert.assertEquals(button.getText(), "Remove");
         }
     }
 
-    @Test
+    @Test(priority = 22) // Test priorities correspond to test case IDs
     public void removeButtonAppearsOnInventoryItemPage() {
         homePage.getInventoryItemLinks().getFirst().click();
         inventoryItemPage.clickOnInventoryItemButton();
         Assert.assertEquals(inventoryItemPage.getInventoryItemButton().getText(), "Remove");
     }
 
-    @Test
+    @Test(priority = 23) // Test priorities correspond to test case IDs
     public void addOneItemToCartFromHomepage() {
         homePage.getInventoryItemButtons().getFirst().click();
         List<String> itemNames = homePage.getItemNames();
@@ -63,7 +66,7 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(itemNames.getFirst(), cartItemNames.getFirst());
     }
 
-    @Test
+    @Test(priority = 24) // Test priorities correspond to test case IDs
     public void addAllItemsToCartFromHomepage() {
         List<String> itemNames = homePage.getItemNames();
         for (WebElement button : homePage.getInventoryItemButtons()){
@@ -76,7 +79,7 @@ public class CartTest extends BaseTest {
         }
     }
 
-    @Test
+    @Test(priority = 25) // Test priorities correspond to test case IDs
     public void addOneItemToCartFromInventoryItemPage() {
         List<String> itemNames = homePage.getItemNames();
         homePage.getInventoryItemLinks().getFirst().click();
@@ -86,7 +89,7 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(itemNames.getFirst(), cartItemNames.getFirst());
     }
 
-    @Test
+    @Test(priority = 26) // Test priorities correspond to test case IDs
     public void addAllItemsToCartFromInventoryItemPage() {
         List<String> itemNames = homePage.getItemNames();
         int totalItems = itemNames.size();
@@ -106,7 +109,7 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(cartItemNames, itemNames);
     }
 
-    @Test
+    @Test(priority = 27) // Test priorities correspond to test case IDs
     public void removeItemFromCartFromHomepage() {
         homePage.getInventoryItemButtons().getFirst().click();
         List<String> itemNames = homePage.getItemNames();
@@ -119,7 +122,7 @@ public class CartTest extends BaseTest {
         Assert.assertTrue(cartPage.getCartItemNamesData().isEmpty());
     }
 
-    @Test
+    @Test(priority = 28) // Test priorities correspond to test case IDs
     public void removeItemFromCartFromInventoryItemPage() {
         List<String> itemNames = homePage.getItemNames();
         homePage.getInventoryItemLinks().getFirst().click();
@@ -133,7 +136,7 @@ public class CartTest extends BaseTest {
         Assert.assertTrue(cartPage.getCartItemNamesData().isEmpty());
     }
 
-    @Test
+    @Test(priority = 29) // Test priorities correspond to test case IDs
     public void removeItemFromCartInCart() {
         homePage.getInventoryItemButtons().getFirst().click();
         homePage.clickOnShoppingCartLink();

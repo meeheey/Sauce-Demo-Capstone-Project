@@ -11,14 +11,16 @@ import org.testng.annotations.Test;
 public class MenuTest extends BaseTest {
     @BeforeMethod
     public void pageSetUp() {
+        // Go to Sauce Demo and log in
         driver.navigate().to("https://www.saucedemo.com/");
         loginPage.inputUsername("standard_user");
         loginPage.inputPassword("secret_sauce");
-        loginPage.clickOnSubmitButton();
+        loginPage.clickOnLoginButton();
+        // Wait until url is changed
         wait.until(ExpectedConditions.urlContains("inventory"));
     }
 
-    @Test
+    @Test(priority = 6) // Test priorities correspond to test case IDs
     public void allItemsTest() {
         homePage.clickOnMenuButton();
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("inventory_sidebar_link"))));
@@ -26,7 +28,7 @@ public class MenuTest extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
     }
 
-    @Test
+    @Test(priority = 7) // Test priorities correspond to test case IDs
     public void aboutLinkTest() {
         homePage.clickOnMenuButton();
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("about_sidebar_link"))));
@@ -35,7 +37,7 @@ public class MenuTest extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), "https://saucelabs.com/");
     }
 
-    @Test
+    @Test(priority = 8) // Test priorities correspond to test case IDs
     public void logoutLinkTest() {
         homePage.clickOnMenuButton();
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("logout_sidebar_link"))));
@@ -43,7 +45,7 @@ public class MenuTest extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/");
     }
 
-    @Test
+    @Test(priority = 9) // Test priorities correspond to test case IDs
     public void resetAppStateLinkTest() {
         for (WebElement button : homePage.getInventoryItemButtons()){
             button.click();

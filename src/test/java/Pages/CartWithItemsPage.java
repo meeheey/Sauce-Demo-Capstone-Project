@@ -8,18 +8,24 @@ import java.util.List;
 public class CartWithItemsPage extends CartPage {
 
     @FindBy(className = "shopping_cart_badge")
-    WebElement cartBadge;
+    WebElement cartBadge; // Get cart badge
 
     @FindBy(className = "cart_button")
-    List<WebElement> cartItemButtons;
+    List<WebElement> cartItemButtons; // Get cart item buttons
 
     //---------------------------------
 
-    public int getCountItems() {
-        return Integer.parseInt(cartBadge.getText());
-    }
-
+    // Getters
     public List<WebElement> getCartItemButtons() {
         return cartItemButtons;
     }
+
+    //---------------------------------
+
+    // Util functions
+
+    public int getCountItems() {
+        return Integer.parseInt(cartBadge.getText()); // Get text from counter and convert it to integer
+    }
+
 }

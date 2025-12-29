@@ -16,34 +16,34 @@ public class FooterLinksTest extends BaseTest {
         driver.navigate().to("https://www.saucedemo.com/");
         loginPage.inputUsername("standard_user");
         loginPage.inputPassword("secret_sauce");
-        loginPage.clickOnSubmitButton();
+        loginPage.clickOnLoginButton();
     }
 
-    @Test
+    @Test(priority = 10) // Test priorities correspond to test case IDs
     public void userCanGoToX() {
         footer.clickOnXLink();
         ArrayList<String> tabList = new ArrayList<>(driver.getWindowHandles());
         Assert.assertTrue(isUrlInTabs(tabList, "https://x.com/saucelabs"));
         }
 
-    @Test
+    @Test(priority = 11) // Test priorities correspond to test case IDs
     public void userCanGoToFacebook() {
         footer.clickOnFacebookLink();
         ArrayList<String> tabList = new ArrayList<>(driver.getWindowHandles());
         Assert.assertTrue(isUrlInTabs(tabList, "https://www.facebook.com/saucelabs"));
     }
 
-    @Test
+    @Test(priority = 12) // Test priorities correspond to test case IDs
     public void userCanGoToLinkedIn() {
         footer.clickOnLinkedInLink();
         ArrayList<String> tabList = new ArrayList<>(driver.getWindowHandles());
         Assert.assertTrue(isUrlInTabs(tabList, "https://www.linkedin.com/company/sauce-labs/"));
     }
 
-    public boolean isUrlInTabs(ArrayList<String> tabList, String url) {
-        for (String tab : tabList) {
+    public boolean isUrlInTabs(ArrayList<String> tabList, String url) { // Util function for checking if url is in any of the open tabs
+        for (String tab : tabList) { // Loop through tavs
             driver.switchTo().window(tab);
-            wait.until((WebDriver d) -> {
+            wait.until((WebDriver d) -> { // Wait until DOM is loaded
                 try {
                     return ((JavascriptExecutor) d)
                             .executeScript("return document.readyState")
@@ -52,11 +52,11 @@ public class FooterLinksTest extends BaseTest {
                     return false;
                 }
             });
-           if (driver.getCurrentUrl().equals(url)) {
+           if (driver.getCurrentUrl().equals(url)) { // If url is found, return true
                return true;
            }
            driver.close();
         }
-        return false;
+        return false; // If url is not in any of the tabs, return false
     }
 }

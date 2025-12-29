@@ -14,42 +14,60 @@ public class LoginTest extends BaseTest {
         driver.navigate().to("https://www.saucedemo.com/");
     }
 
-    @Test
+    @Test(priority = 1) // Test priorities correspond to test case IDs
     public void userCanLogIn() {
-        loginPage.inputUsername("standard_user");
-        loginPage.inputPassword("secret_sauce");
-        loginPage.clickOnSubmitButton();
+        // Get data from Excel file
+        String validUsername = excelReader.getStringData("LoginData", 1, 0);
+        String validPassword = excelReader.getStringData("LoginData", 1, 1);
+        // Enter username and password
+        loginPage.inputUsername(validUsername);
+        loginPage.inputPassword(validPassword);
+        // Click on Login button
+        loginPage.clickOnLoginButton();
         homePage.clickOnMenuButton();
         Assert.assertTrue(menu.getLogoutLink().isDisplayed());
     }
 
-    @Test
+    @Test(priority = 2) // Test priorities correspond to test case IDs
     public void userCanLogInWithInvalidUsername() {
-        loginPage.inputUsername("locked_out_user");
-        loginPage.inputPassword("secret_sauce");
-        loginPage.clickOnSubmitButton();
+        // Get data from Excel file
+        String validPassword = excelReader.getStringData("LoginData", 1, 1);
+        String invalidUsername = excelReader.getStringData("LoginData", 1, 2);
+        // Enter username and password
+        loginPage.inputUsername(invalidUsername);
+        loginPage.inputPassword(validPassword);
+        // Click on Login button
+        loginPage.clickOnLoginButton();
         Assert.assertTrue(loginPage.getLoginButton().isDisplayed());
     }
 
-    @Test
+    @Test(priority = 3) // Test priorities correspond to test case IDs
     public void userCanLogInWithInvalidPassword() {
-        loginPage.inputUsername("standard_user");
-        loginPage.inputPassword("Password123");
-        loginPage.clickOnSubmitButton();
+        // Get data from Excel file
+        String validUsername = excelReader.getStringData("LoginData", 1, 0);
+        String invalidPassword = excelReader.getStringData("LoginData", 1, 3);
+        // Enter username and password
+        loginPage.inputUsername(validUsername);
+        loginPage.inputPassword(invalidPassword);
+        // Click on Login button
+        loginPage.clickOnLoginButton();
         Assert.assertTrue(loginPage.getLoginButton().isDisplayed());
     }
 
-    @Test
+    @Test(priority = 4) // Test priorities correspond to test case IDs
     public void userCanLogInWithNoCredentials() {
+        // Enter empty strings as username and password
         loginPage.inputUsername("");
         loginPage.inputPassword("");
-        loginPage.clickOnSubmitButton();
+        // Click on Login button
+        loginPage.clickOnLoginButton();
         Assert.assertTrue(loginPage.getLoginButton().isDisplayed());
     }
 
     @AfterMethod
     public void tearDown() {
         try {
+            // Logout
             homePage.clickOnMenuButton();
             if (menu.getLogoutLink().isDisplayed()) {
                 menu.clickOnLogoutLink();

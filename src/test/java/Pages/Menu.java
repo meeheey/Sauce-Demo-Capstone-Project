@@ -10,6 +10,8 @@ public class Menu extends BaseTest {
         PageFactory.initElements(driver, this);
     }
 
+    // Get links from menu
+
     @FindBy(id = "inventory_sidebar_link")
     WebElement allItemsLink;
 
@@ -24,11 +26,15 @@ public class Menu extends BaseTest {
 
     //------------------------------
 
+    // Getters
+
     public WebElement getLogoutLink() {
         return logoutLink;
     }
 
     //---------------------------------
+
+    // Util functions
 
     public void clickOnAllItemsLink() {
         allItemsLink.click();

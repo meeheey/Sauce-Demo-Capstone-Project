@@ -13,6 +13,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
+    // Objects declaration
     public static WebDriver driver;
     public ExcelReader excelReader;
     public WebDriverWait wait;
@@ -30,12 +31,13 @@ public class BaseTest {
     public CheckoutCompletePage checkoutCompletePage;
 
     @BeforeClass
-    public void setUp() throws IOException {
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        excelReader = new ExcelReader("InventoryData.xlsx");
-        driver.manage().window().maximize();
+    public void setUp() throws IOException { // Exception is needed since ExcelReader is used
+        WebDriverManager.firefoxdriver().setup(); // Driver setup
+        driver = new FirefoxDriver(); // Driver initialization
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // Wait object initialization
+        excelReader = new ExcelReader("Data.xlsx"); // ExcelReader initialization
+        driver.manage().window().maximize(); // Maximizing window
+        // Page objects initialization
         homePage = new HomePage();
         homePageWithFilter = new HomePageWithFilter();
         loginPage = new LoginPage();
